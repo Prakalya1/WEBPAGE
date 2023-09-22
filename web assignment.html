@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: lavender; /* Set the background color of the entire page to lavender */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #video-container {
+            display: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: red; /* Set the background color of the button to red */
+            color: white; /* Set the text color of the button to white */
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>FACE RECOGNITION</h1>
+    <button id="startButton">Start Camera</button>
+    <div id="video-container">
+        <video id="video" autoplay playsinline></video>
+    </div>
+
+    <script>
+        const startButton = document.getElementById('startButton');
+        const videoContainer = document.getElementById('video-container');
+        const video = document.getElementById('video');
+
+        startButton.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                videoContainer.style.display = 'block';
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+            }
+        });
+    </script>
+</body>
+</html>
